@@ -1,6 +1,7 @@
 import csv
 import random
 import pandas as pd
+import numpy as np
 
 game_board = ['green', 'doodads', 'green', 'purple', 'green', 'paycheck', 'green', 'market'] * 3
 game_board[3] = 'charity'
@@ -9,6 +10,13 @@ game_board[19] = 'downsized'
 income_items = ['']
 
 professions = pd.read_csv('Professions.csv')
+professions.set_index('Name', inplace = True)
+index_0 = ['Income'] * 3 + ['Expenses'] * 9 + ['Savings'] + ['Liabilities'] * 5
+index_1 = list(professions.columns)
+index = pd.MultiIndex.from_arrays([index_0, index_1])
+professions = professions.T
+professions.set_index(index, inplace = True)
+professions = professions.to_dict()
 
 professions = []
 f = open('Professions.tsv', 'r')
