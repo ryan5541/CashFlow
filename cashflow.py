@@ -1,7 +1,6 @@
 import csv
 import random
 import pandas as pd
-import numpy as np
 
 game_board = ['green', 'doodads', 'green', 'purple', 'green', 'paycheck', 'green', 'market'] * 3
 game_board[3] = 'charity'
